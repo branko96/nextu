@@ -7,8 +7,12 @@ body{
 	padding: 0;
 	background-color: #02010a;
 	font-family: 'Dancing-Script';
-	max-width: 100%;
 	overflow-x: hidden;
+}
+#contenido{
+	max-width: 900px;
+	text-align: center;
+	margin: auto;
 }
 img{
 	box-shadow: 2px 2px 2px 2px #02010a;
@@ -24,6 +28,7 @@ img{
 	color:white;
 	text-shadow: 2px 2px 2px #02010a;
 	float: left;
+	font-size: 32px;
 }
 #menu{
 	float: right;
@@ -65,14 +70,35 @@ img{
 	height: 350px;
 	margin: 20px auto 20px auto;
 }
-
 #container_sec .img_izquierda:hover{
 	transform: rotateZ(10deg);
+	box-shadow: 2px 2px 2px 2px #82c3a6 !important;
+	border:2px solid;
 }
 #container_sec .img_derecha:hover{
 	transform: translate(10px,-5px);
+	box-shadow: 2px 2px 2px 2px #82c3a6 !important;
+	border:2px solid;
 }
+
+/*FOOTER*/
+#footer{
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	display: flex;
+	background-color: #C6d5c5;
+	width: 100%;
+}
+#footer .col_footer{
+	width: 25%;
+}
+
+
 @media (max-width: 500px){
+	#contenido{
+		max-width: 100% !important;
+		width: 100% !important;
+	}
 	#container_sec{
 		display: block;
 	}
@@ -80,4 +106,5 @@ img{
 		width: 90%;
 		margin: auto;
 	}
+
 }
