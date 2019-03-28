@@ -1,0 +1,68 @@
+@font-face{
+	font-family: 'Dancing-Script';
+	src: url('../font/DancingScript-Regular.otf') format('opentype');
+}
+
+body{
+	padding: 0;
+	background-color: #02010a;
+	font-family: 'Dancing-Script';
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+img{
+	box-shadow: 2px 2px 2px 2px #02010a;
+}
+#header{
+	background-color: #5b7989;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	height: 40px;
+	padding: 20px;
+}
+.nombre_pag{
+	color:white;
+	text-shadow: 2px 2px 2px #02010a;
+	float: left;
+}
+#menu{
+	float: right;
+}
+#menu li{
+	float: left;
+	list-style: none;
+	margin: 10px;
+}
+#menu li a{
+	color: white;
+}
+#menu li a.actual{
+	text-decoration: none;
+}
+
+#container_img{
+	background-color: #82c3a6;
+	text-align: center;
+	width: 100%;
+    padding-bottom: 30px;
+}
+#container_img img{
+	width: 80%;
+	/*margin: auto;
+	display:block;*/
+	margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#container_sec{
+	display: flex;
+	text-align: center;
+	background-color: #d5c75f;
+	border:1px solid;
+}
+#container_sec img{
+	width: 50%;
+	margin: auto;
+}
