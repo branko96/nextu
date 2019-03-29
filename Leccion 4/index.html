@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Agencia de viajes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper red darken-4">
+          <a href="#" class="brand-logo center"><p>Agencia de Viajes</p></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section>
+    <div class="banner">
+      <h2>Cumplimos tus sueños</h2>
+    </div>
+    <div class="registro">
+      <h3>Registro: </h3>
+      <figure>
+        <img src="usuario.png" alt="">
+      </figure>
+      <form action="">
+        <input type="text" id="numDoc" name="documento" placeholder="Numero de documento...">
+        <input type="text" id="nombreCom" name="nombre" placeholder="Nombre completo...">
+        <input type="email" id="correo" name="email" placeholder="Dirección correo electronico...">
+        <input type="text" id="nombreUsuario" name="usuario" placeholder="Nombre de usuario...">
+        <input type="password" id="password" name="usuario" placeholder="Contraseña...">
+        <button type="button" id="registrar" name="button">Guardar</button>
+      </form>
+    </div>
+    <div class="reserva hide">
+      <h3>Reserva: </h3>
+      <p>Ingrese el numero de documento y pulse enter para completar información</p>
+      <form action="">
+        <input type="text" id="numDocRes" name="documento" placeholder="Numero de documento...">
+        <input type="text" id="nombreUsuarioRes" disabled name="usuario" placeholder="Nombre de usuario...">
+        <input type="text" id="nombreComRes" disabled name="nombre" placeholder="Nombre Completo...">
+        <input type="email" id="correoRes" disabled name="email" placeholder="Dirección correo electronico...">
+        <input type="text" id="destino" name="destino" placeholder="Destino">
+        <button type="button" id="reservar" name="button">Guardar</button>
+      </form>
+    </div>
+  </section>
+  <script type="text/javascript" src="app.js">
+
+  </script>
+</body>
+</html>
