@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vuejs Firebase</title>
+</head>
+<body>
+<div id="app">
+	
+	<input type="text" name="username" v-model="perfil.username"><br>
+	<input type="password" name="password" v-model="perfil.password"><br>
+	<input type="text" name="ciudad" v-model="perfil.ciudad"><br>
+	<input type="text" name="direccion" v-model="perfil.direccion"><br>
+	<button @click="guardar_perfil">Guardar</button>
+</div>
+
+
+
+<script src="js/vue.js"></script>
+<script src="js/vue-axios.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script>
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCquBnWFhZra1vF6pRCTzGxqLpRsclgARs",
+    authDomain: "crud-vuejs-a93b3.firebaseapp.com",
+    databaseURL: "https://crud-vuejs-a93b3.firebaseio.com",
+    projectId: "crud-vuejs-a93b3",
+    storageBucket: "crud-vuejs-a93b3.appspot.com",
+    messagingSenderId: "488454664618"
+  };
+  firebase.initializeApp(config);
+
+</script>
+<script src="js/controller.js"></script>
+</body>
+</html>
