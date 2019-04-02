@@ -36,6 +36,9 @@ botonRegistro.addEventListener('click', function(e) {
   alert('Usuario Registrado');
   var usuario=JSON.parse(Storage.getItem('usuario'));
   console.log(usuario);
+
+  formRegistro.className = "registro hide";
+  formReserva.className = "reserva";
 })
 
 botonReserva.addEventListener('click', function(e) {
