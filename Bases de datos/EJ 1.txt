@@ -1,0 +1,22 @@
+HABITACIONES:
+-numero
+-fumador
+
+TIPO HABITACION:
+-nombre 
+-capacidad
+
+Clientes:
+-nombre
+-pais
+
+Hoteles:
+-nombre
+-direccion
+-disponibilidad
+
+Reserva:
+-cant personas
+-mascotas
+-fecha inicio
+-fecha fin
