@@ -23,7 +23,7 @@ img{
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	height: 40px;
-	padding: 20px;
+	padding: 31px;
 }
 .nombre_pag{
 	color:white;
@@ -61,10 +61,14 @@ img{
 }
 
 #container_sec{
-	display: flex;
 	text-align: center;
 	background-color: #d5c75f;
-    padding: 1px;
+    padding: 0.1px;
+    width: 100%;
+}
+#container_sec .col_imgs{
+	width: 100%;
+	display: flex;
 }
 #container_sec img{
 	width: 90%;
@@ -72,7 +76,7 @@ img{
 	margin: 20px auto 20px auto;
 }
 #container_sec div{
-	width: 50%;
+	width: 33%;
 }
 #container_sec a{
 	width: 100%;
@@ -83,29 +87,6 @@ img{
 	color: black;
 	font-weight: bold;
 	font-size: 25px;
-}
-#container_sec .img_izquierda:hover{
-	transform: rotateZ(10deg);
-	box-shadow: 2px 2px 2px 2px #82c3a6 !important;
-	-webkit-transition: transform 0.7s ease-in;
- 	-moz-transition: transform 0.7s ease-in;
-   	-o-transition: transform 0.7s ease-in;
-  	transition: transform 0.7s ease-in;
-	border:2px solid;
-}
-#container_sec .img_derecha:hover{
-	transform: translate(10px,-5px);
-	box-shadow: 2px 2px 2px 2px #82c3a6 !important;
-	border:2px solid;
-	-webkit-transform: translate(10px,-5px);
- 	-moz-transform: translate(10px,-5px);
-  	-ms-transform: translate(10px,-5px);
-   	-o-transform: translate(10px,-5px);
-
-   	-webkit-transition: -webkit-transform 0.7s ease-in; /* Changed here */ 
- 	-moz-transition: -moz-transform 0.7s ease-in;
-   	-o-transition: -o-transform 0.7s ease-in;
-  	transition: transform 0.7s ease-in;
 }
 
 /*FOOTER*/
@@ -146,6 +127,9 @@ img{
 	#container_sec img{
 		width: 100%;
 	}
+	#header{
+		padding: 22px;
+	}
 	#footer{
 		display: block;
 		width: 100%;
@@ -159,5 +143,10 @@ img{
 	}
 	.nombre_pag{
 	    font-size: 24px;
+	}
+
+	#container_sec .col_imgs{
+		width: 100%;
+		display: block;
 	}
 }
