@@ -5,6 +5,7 @@
 
 body{
 	padding: 0;
+	margin: 5px;
 	background-color: #02010a;
 	font-family: 'Dancing-Script';
 	overflow-x: hidden;
@@ -63,22 +64,48 @@ img{
 	display: flex;
 	text-align: center;
 	background-color: #d5c75f;
-	border:1px solid;
+    padding: 1px;
 }
 #container_sec img{
-	width: 45%;
+	width: 90%;
 	height: 350px;
 	margin: 20px auto 20px auto;
+}
+#container_sec div{
+	width: 50%;
+}
+#container_sec a{
+	width: 100%;
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: black;
+	font-weight: bold;
+	font-size: 25px;
 }
 #container_sec .img_izquierda:hover{
 	transform: rotateZ(10deg);
 	box-shadow: 2px 2px 2px 2px #82c3a6 !important;
+	-webkit-transition: transform 0.7s ease-in;
+ 	-moz-transition: transform 0.7s ease-in;
+   	-o-transition: transform 0.7s ease-in;
+  	transition: transform 0.7s ease-in;
 	border:2px solid;
 }
 #container_sec .img_derecha:hover{
 	transform: translate(10px,-5px);
 	box-shadow: 2px 2px 2px 2px #82c3a6 !important;
 	border:2px solid;
+	-webkit-transform: translate(10px,-5px);
+ 	-moz-transform: translate(10px,-5px);
+  	-ms-transform: translate(10px,-5px);
+   	-o-transform: translate(10px,-5px);
+
+   	-webkit-transition: -webkit-transform 0.7s ease-in; /* Changed here */ 
+ 	-moz-transition: -moz-transform 0.7s ease-in;
+   	-o-transition: -o-transform 0.7s ease-in;
+  	transition: transform 0.7s ease-in;
 }
 
 /*FOOTER*/
@@ -88,11 +115,21 @@ img{
 	display: flex;
 	background-color: #C6d5c5;
 	width: 100%;
+	padding: 0.1px;
 }
 #footer .col_footer{
 	width: 25%;
+	margin-bottom: 10px;
 }
-
+.col_footer.redes div{
+	text-align: left;
+}
+.red_social{
+	width: 15px;
+	height: 15px;
+	margin-bottom: 5px;
+	box-shadow: inherit !important;
+}
 
 @media (max-width: 500px){
 	#contenido{
@@ -102,9 +139,25 @@ img{
 	#container_sec{
 		display: block;
 	}
-	#container_sec img{
+	#container_sec div{
 		width: 90%;
 		margin: auto;
 	}
-
+	#container_sec img{
+		width: 100%;
+	}
+	#footer{
+		display: block;
+		width: 100%;
+	}
+	#footer .col_footer{
+		width: 100%;
+	}
+	#menu {
+	    margin: 0;
+	    float: inherit;
+	}
+	.nombre_pag{
+	    font-size: 24px;
+	}
 }
