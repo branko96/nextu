@@ -26,10 +26,12 @@ var calculadora={
 		}
     },
   	total:function(){
-		this.display=eval(this.display);
+  		if (this.display != "-" && this.display != "+") {
+			this.display=this.display+"="+eval(this.display);
+		}
   	},
   	verificar:function(tecla){
-  		if (tecla != "punto" && tecla != "por" && tecla != "dividido" && tecla != "mas" && tecla != "menos") {
+  		if (tecla != "punto" && tecla != "por" && tecla != "dividido" && tecla != "mas" && tecla != "menos" && tecla != "igual") {
   			return true;
   		}else{
   			return false;
@@ -71,7 +73,9 @@ var calculadora={
 				this.punto(ultimo_caracter);
 				break;
 			case "igual":
-				this.total();
+				if (this.verificar_nulos()) {
+					this.total();
+				}
 				break;
 			default:
 				this.display+=tecla;
