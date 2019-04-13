@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>Comentarios</title>
+	</head>
+	<script
+	src="https://code.jquery.com/jquery-2.2.4.js"
+	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+	crossorigin="anonymous"></script>
+	<script>
+
+
+	function  cargarMasComentarios(){
+
+		//Agrega tu codigo aqui
+		$.ajax({
+			url:'comentarios.json',
+			method:'GET',
+			data:{},
+			success:function(resp){
+				console.log(resp);
+				var com=resp;
+				var comentarios="";
+				if (resp.length > 0) {
+					for (var i = 0; i < com.length; i++) {
+						var comentario='<div class="comentario">';
+						comentario+='<div class="autor">Por '+com[i].autor+' - <span class="fecha">'+com[i].fecha+'</span></div>';
+						comentario+='<div class="description">'+com[i].comentario+'</div>';
+						comentario+='</div>';
+						comentarios+=comentario;
+					}
+					$(".comentarios").append(comentarios);
+				}
+			}
+		});
+	}
+
+	$( document ).ready(function() {
+
+		//funcion para detectar cuando se llega al final del scroll
+		$(window).on('scroll', function(){
+			if( $(window).scrollTop() > $(document).height() - $(window).height() ) {
+				cargarMasComentarios();
+			}
+		}).scroll();
+
+		$( ".cargar-mas button" ).click(function() {
+			cargarMasComentarios();
+		});
+	});
+	</script>
+	<style>
+		body{
+			font-family: Arial;
+			font-size: 12pt;
+		}
+		.principal{
+			padding: 5px;
+			width: 250px;
+		}
+		.principal h1{
+			padding: 10px;
+			border-radius: 10px;
+			background-color: orange;
+			color: white;
+			text-align: center;
+		}
+
+	</style>
+	<body>
+		<div class="principal">
+			<h1>Comentarios</h1>
+			<div class="comentarios">
+				<div class="comentario">
+					<div class="autor">Por Luis - <span class="fecha">Hace dos minutos</span></div>
+					<div class="description">Queria hacer un comentario largo que describa un poco la situacion que actualmente tenemos</div>
+				</div>
+
+			</div>
+			<div class="cargar-mas">
+				<button >Ver más</button>
+			</div>
+		</div>
+	</body>
+</html>
