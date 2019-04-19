@@ -16,13 +16,13 @@
 
 <script type="text/javascript">
 	var estudiantes=[
-			{"codigo":"001","nombre":"Pedro","nota":"8"},
+			{"codigo":"001","nombre":"Pedro","nota":"9"},
 			{"codigo":"002","nombre":"Matias","nota":"6"},
 			{"codigo":"003","nombre":"Nahuel","nota":"5"},
 			{"codigo":"004","nombre":"Gonzalo","nota":"2"},
 			{"codigo":"005","nombre":"Eduardo","nota":"9"},
 			{"codigo":"006","nombre":"Santiago","nota":"10"},
-			{"codigo":"007","nombre":"Lucas","nota":"2"},
+			{"codigo":"007","nombre":"Lucas","nota":"1"},
 			{"codigo":"008","nombre":"Nicolas","nota":"3"},
 			{"codigo":"009","nombre":"Patricio","nota":"8"},
 			{"codigo":"0010","nombre":"Alejandro","nota":"7"}
@@ -41,7 +41,7 @@
 	function promedio(){
 		var notas=0;
 		for (var i = 0 ; i < estudiantes.length; i++) {
-			notas=notas+estudiantes[i].nota;
+			notas=notas+parseInt(estudiantes[i].nota);
 		}
 		var promedio= notas/10;
 		resultado.innerHTML="La nota promedio es: "+promedio;
@@ -49,22 +49,26 @@
 
 	function mayor_nota(){
 		var nota_mayor=0;
+		var estudiante="";
 		for (var i = 0 ; i < estudiantes.length; i++) {
-			if (nota_mayor < estudiantes[i].nota) {
+			if (nota_mayor < parseInt(estudiantes[i].nota)) {
 				nota_mayor=estudiantes[i].nota;
+				estudiante=estudiantes[i].nombre;
 			}
 		}
-		resultado.innerHTML="La mayor nota es: "+nota_mayor;
+		resultado.innerHTML="La mayor nota es: "+nota_mayor+", de el estudiante: "+estudiante;
 	}
 
 	function menor_nota(){
 		var nota_menor=10;
+		var estudiante="";
 		for (var i = 0 ; i < estudiantes.length; i++) {
-			if (nota_menor > estudiantes[i].nota) {
+			if (nota_menor > parseInt(estudiantes[i].nota)) {
 				nota_menor=estudiantes[i].nota;
+				estudiante=estudiantes[i].nombre;
 			}
 		}
-		resultado.innerHTML="La menor nota es: "+nota_menor;
+		resultado.innerHTML="La menor nota es: "+nota_menor+", de el estudiante: "+estudiante;
 	}
 
 </script>
