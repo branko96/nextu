@@ -21,14 +21,21 @@ var calculadora={
 		}
     },
     punto:function(ultimo_caracter){
-    	if (this.display != "0" && ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*") {
+    	if (ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*") {
 			this.display+=".";
 		}
     },
   	total:function(){
   		if (this.display != "-" && this.display != "+") {
-			this.display=this.display+"="+eval(this.display);
-		}
+        var separacion=this.display.split("=");
+        console.log(separacion);
+        var ult_operando=separacion[separacion.length-1];
+        if (!isNaN(ult_operando)) {
+          this.display=this.display+"="+eval(ult_operando);
+        }else{
+  			   this.display=this.display+"="+eval(separacion[separacion.length-1]);
+        }
+  		}
   	},
   	verificar:function(tecla){
   		if (tecla != "punto" && tecla != "por" && tecla != "dividido" && tecla != "mas" && tecla != "menos" && tecla != "igual") {
