@@ -1,5 +1,8 @@
 var calculadora={
     display:document.getElementById("display").innerHTML,
+    operacion:'',
+    ult_resultado:0,
+    ult_op:'',
     dividir:function(){
     	if (this.verificar_nulos()) {
 			this.display+="/";
@@ -26,16 +29,23 @@ var calculadora={
 		}
     },
   	total:function(){
-  		if (this.display != "-" && this.display != "+") {
         var separacion=this.display.split("=");
         console.log(separacion);
         var ult_operando=separacion[separacion.length-1];
-        if (!isNaN(ult_operando)) {
-          this.display=this.display+"="+eval(ult_operando);
+        //agarro el ultimo numero de la operacion
+
+        console.log(ult_operando);
+        console.log(separacion.length);
+        if (separacion.length >1) {
+          console.log(this.ult_op);
+          console.log(this.ult_resultado+this.operacion+this.ult_op);
+          this.display=this.display+"="+eval(this.ult_resultado+this.operacion+this.ult_op);
         }else{
-  			   this.display=this.display+"="+eval(separacion[separacion.length-1]);
+          this.display=this.display+"="+eval(ult_operando);
+          this.ult_resultado=eval(ult_operando);
+          this.ult_op=ult_operando.split(this.operacion);
+          console.log(this.ult_op[separacion.length-1]);
         }
-  		}
   	},
   	verificar:function(tecla){
   		if (tecla != "punto" && tecla != "por" && tecla != "dividido" && tecla != "mas" && tecla != "menos" && tecla != "igual") {
@@ -62,18 +72,23 @@ var calculadora={
 		switch(tecla){
 			case "dividido":
 				this.dividir();
+        this.operacion='/';
 				break;
 			case "por":
 				this.multiplicar();
+        this.operacion='*';
 				break;
 			case "menos":
 				this.restar();
+        this.operacion='-';
 				break;
 			case "mas":
 				this.sumar();
+        this.operacion='+';
 				break;
 			case "on":
 				this.resetear();
+        this.operacion='';
 				break;
 			case "punto":
 				var ultimo_caracter=this.display[this.display.length-1];
@@ -103,5 +118,4 @@ for (var i = 0; i < tecla.length; i++) {
     tecla[i].addEventListener('click',function() {calculadora.teclea(this.id)}, false);
 }
 
-//console.log(calculadora);
 
