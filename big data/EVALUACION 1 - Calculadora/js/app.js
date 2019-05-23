@@ -21,12 +21,13 @@ var calculadora={
     restar:function(ultimo_caracter){
     	if (this.verificar_nulos() && ultimo_caracter != "-") {
         this.display+="-";
+        // deberia poner la pantalla en blanco "" y nada mas
       }
     },
     punto:function(ultimo_caracter){
     	if (ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*" && ultimo_caracter != ".") {
-			this.display+=".";
-		}
+  			this.display+=".";
+  		}
     },
   	total:function(){
         var separacion=this.display.split("=");
