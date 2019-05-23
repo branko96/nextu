@@ -38,8 +38,10 @@ var calculadora={
         console.log(separacion.length);
         if (separacion.length >1) {
           console.log(this.ult_op);
-          console.log(this.ult_resultado+this.operacion+this.ult_op);
-          this.display=this.display+"="+eval(this.ult_resultado+this.operacion+this.ult_op);
+          var res=eval(this.ult_resultado+this.operacion+this.ult_op[this.ult_op.length-1]);
+          console.log(res);
+          this.display=this.display+"="+res;
+    	  this.ult_resultado=res;
         }else{
           this.display=this.display+"="+eval(ult_operando);
           this.ult_resultado=eval(ult_operando);
