@@ -13,40 +13,40 @@ var calculadora={
 			this.display+="*";
 		}
     },
-    sumar:function(){
-    	if (this.verificar_nulos()) {
-			this.display+="+";
-		}
+    sumar:function(ultimo_caracter){
+    	if (this.verificar_nulos() && ultimo_caracter != "+") {
+  			this.display+="+";
+  		}
     },
-    restar:function(){
-    	if (this.verificar_nulos()) {
-			this.display+="-";
-		}
+    restar:function(ultimo_caracter){
+    	if (this.verificar_nulos() && ultimo_caracter != "-") {
+        this.display+="-";
+      }
     },
     punto:function(ultimo_caracter){
-    	if (ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*") {
+    	if (ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*" && ultimo_caracter != ".") {
 			this.display+=".";
 		}
     },
   	total:function(){
         var separacion=this.display.split("=");
-        console.log(separacion);
+        //console.log(separacion);
         var ult_operando=separacion[separacion.length-1];
         //agarro el ultimo numero de la operacion
 
-        console.log(ult_operando);
-        console.log(separacion.length);
+        //console.log(ult_operando);
+        //console.log(separacion.length);
         if (separacion.length >1) {
-          console.log(this.ult_op);
+          //console.log(this.ult_op);
           var res=eval(this.ult_resultado+this.operacion+this.ult_op[this.ult_op.length-1]);
-          console.log(res);
+          //console.log(res);
           this.display=this.display+"="+res;
-    	  this.ult_resultado=res;
+    	    this.ult_resultado=res;
         }else{
           this.display=this.display+"="+eval(ult_operando);
           this.ult_resultado=eval(ult_operando);
           this.ult_op=ult_operando.split(this.operacion);
-          console.log(this.ult_op[separacion.length-1]);
+          //console.log(this.ult_op[separacion.length-1]);
         }
   	},
   	verificar:function(tecla){
@@ -66,10 +66,19 @@ var calculadora={
   	resetear:function(){
   		this.display="0";
   	},
+    cambio_signo:function(primer_caracter){
+        if (this.verificar_nulos()){
+          if(primer_caracter == "-") {
+            this.display= this.display.slice(1,this.display.length);
+          }else{
+            this.display="-"+this.display;
+          }
+        }
+    },
   	teclea:function(tecla){
-  		if (this.display == "0" && this.verificar(tecla)) {
-  			this.display="";
-  		}
+  		// if (! this.verificar(tecla)) {
+  		// 	this.display="";
+  		// }
 
 		switch(tecla){
 			case "dividido":
@@ -81,17 +90,23 @@ var calculadora={
         this.operacion='*';
 				break;
 			case "menos":
-				this.restar();
+        var ultimo_caracter=this.display[this.display.length-1];
+				this.restar(ultimo_caracter);
         this.operacion='-';
 				break;
 			case "mas":
-				this.sumar();
+        var ultimo_caracter=this.display[this.display.length-1];
+				this.sumar(ultimo_caracter);
         this.operacion='+';
 				break;
 			case "on":
 				this.resetear();
         this.operacion='';
 				break;
+      case "sign":
+        var primer_caracter=this.display[0];
+        this.cambio_signo(primer_caracter);
+        break;
 			case "punto":
 				var ultimo_caracter=this.display[this.display.length-1];
 				this.punto(ultimo_caracter);
@@ -102,7 +117,11 @@ var calculadora={
 				}
 				break;
 			default:
-				this.display+=tecla;
+        if (this.verificar_nulos()) {
+          this.display+=tecla;
+        }else{
+          this.display=tecla;
+        }
 		}
 		document.getElementById("display").innerHTML=this.display;
 
