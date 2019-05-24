@@ -5,23 +5,27 @@ var calculadora={
     ult_op:'',
     dividir:function(){
     	if (this.verificar_nulos()) {
-			this.display+="/";
-		}
+			 //this.display+="/";
+        this.display="";
+		  }
     },
     multiplicar:function(){
     	if (this.verificar_nulos()) {
-			this.display+="*";
+			//this.display+="*";
+      this.display="";
 		}
     },
     sumar:function(ultimo_caracter){
     	if (this.verificar_nulos() && ultimo_caracter != "+") {
-  			this.display+="+";
+  			//this.display+="+";
+        this.display="";
   		}
     },
     restar:function(ultimo_caracter){
     	if (this.verificar_nulos() && ultimo_caracter != "-") {
-        this.display+="-";
+        //this.display+="-";
         // deberia poner la pantalla en blanco "" y nada mas
+        this.display="";
       }
     },
     punto:function(ultimo_caracter){
