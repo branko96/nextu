@@ -30,21 +30,23 @@ var calculadora={
   		}
     },
   	total:function(){
-        var separacion=this.display.split("=");
+        var separacion=this.display.toString().split("=");
         //console.log(separacion);
         var ult_operando=separacion[separacion.length-1];
         //agarro el ultimo numero de la operacion
 
         //console.log(ult_operando);
         //console.log(separacion.length);
-        if (separacion.length >1) {
+        var u=ult_operando.toString().split(this.operacion);
+        //console.log(u);
+        if (u.length == 1) {
           //console.log(this.ult_op);
           var res=eval(this.ult_resultado+this.operacion+this.ult_op[this.ult_op.length-1]);
           //console.log(res);
-          this.display=this.display+"="+res;
+          this.display=res;
     	    this.ult_resultado=res;
         }else{
-          this.display=this.display+"="+eval(ult_operando);
+          this.display=eval(ult_operando);
           this.ult_resultado=eval(ult_operando);
           this.ult_op=ult_operando.split(this.operacion);
           //console.log(this.ult_op[separacion.length-1]);
@@ -124,8 +126,13 @@ var calculadora={
           this.display=tecla;
         }
 		}
-		document.getElementById("display").innerHTML=this.display;
 
+    //muestro en pantalla
+      if (this.display.toString().length >8) {
+        document.getElementById("display").innerHTML=this.display.toString().slice(0,8);
+      }else{
+  		  document.getElementById("display").innerHTML=this.display;
+      }
   	}		
 }
 
