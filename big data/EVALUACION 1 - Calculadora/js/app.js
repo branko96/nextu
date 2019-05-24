@@ -8,7 +8,6 @@ var calculadora={
     bucle:false,
     dividir:function(){
     	if (this.verificar_nulos()) {
-			  //this.display+="/";
         this.a=this.display;
         this.display="";
         this.bucle=false;
@@ -16,7 +15,6 @@ var calculadora={
     },
     multiplicar:function(){
     	if (this.verificar_nulos()) {
-  			//this.display+="*";
         this.a=this.display;
         this.display="";
         this.bucle=false;
@@ -24,7 +22,6 @@ var calculadora={
     },
     sumar:function(ultimo_caracter){
     	if (this.verificar_nulos() && ultimo_caracter != "+") {
-  			//this.display+="+";
         this.a=this.display;
         this.display="";
         this.bucle=false;
@@ -38,13 +35,12 @@ var calculadora={
       }
     },
     punto:function(ultimo_caracter){
-    	if (this.display = "" && ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*" && ultimo_caracter != ".") {
+    	if (this.display != "" && ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*" && ultimo_caracter != ".") {
   			this.display+=".";
   		}
     },
   	total:function(){
         this.b=this.display;
-        console.log(this.b);
         if (this.bucle) {
          var res=eval(this.ult_resultado+this.operacion+this.ult_b);
           this.display=res;
@@ -83,10 +79,6 @@ var calculadora={
         }
     },
   	teclea:function(tecla){
-  		// if (! this.verificar(tecla)) {
-  		// 	this.display="";
-  		// }
-
 		switch(tecla){
 			case "dividido":
 				this.dividir();
@@ -142,7 +134,6 @@ var calculadora={
 
 
 var tecla=document.getElementsByClassName("tecla");
-//console.log(tecla);
 for (var i = 0; i < tecla.length; i++) {
     tecla[i].addEventListener('click',function() {calculadora.teclea(this.id)}, false);
 }
