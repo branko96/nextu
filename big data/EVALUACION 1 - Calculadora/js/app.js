@@ -2,59 +2,59 @@ var calculadora={
     display:document.getElementById("display").innerHTML,
     operacion:'',
     ult_resultado:0,
-    ult_op:'',
+    a:0,
+    b:0,
+    ult_b:0,
+    bucle:false,
     dividir:function(){
     	if (this.verificar_nulos()) {
-			 //this.display+="/";
+			  //this.display+="/";
+        this.a=this.display;
         this.display="";
+        this.bucle=false;
 		  }
     },
     multiplicar:function(){
     	if (this.verificar_nulos()) {
-			//this.display+="*";
-      this.display="";
-		}
+  			//this.display+="*";
+        this.a=this.display;
+        this.display="";
+        this.bucle=false;
+  		}
     },
     sumar:function(ultimo_caracter){
     	if (this.verificar_nulos() && ultimo_caracter != "+") {
   			//this.display+="+";
+        this.a=this.display;
         this.display="";
+        this.bucle=false;
   		}
     },
     restar:function(ultimo_caracter){
     	if (this.verificar_nulos() && ultimo_caracter != "-") {
-        //this.display+="-";
-        // deberia poner la pantalla en blanco "" y nada mas
+        this.a=this.display;
         this.display="";
+        this.bucle=false;
       }
     },
     punto:function(ultimo_caracter){
-    	if (ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*" && ultimo_caracter != ".") {
+    	if (this.display = "" && ultimo_caracter != "+" && ultimo_caracter != "-" && ultimo_caracter != "/" && ultimo_caracter != "*" && ultimo_caracter != ".") {
   			this.display+=".";
   		}
     },
   	total:function(){
-        var separacion=this.display.toString().split("=");
-        //console.log(separacion);
-        var ult_operando=separacion[separacion.length-1];
-        //agarro el ultimo numero de la operacion
-
-        //console.log(ult_operando);
-        //console.log(separacion.length);
-        var u=ult_operando.toString().split(this.operacion);
-        //console.log(u);
-        if (u.length == 1) {
-          //console.log(this.ult_op);
-          var res=eval(this.ult_resultado+this.operacion+this.ult_op[this.ult_op.length-1]);
-          //console.log(res);
+        this.b=this.display;
+        console.log(this.b);
+        if (this.bucle) {
+         var res=eval(this.ult_resultado+this.operacion+this.ult_b);
           this.display=res;
-    	    this.ult_resultado=res;
         }else{
-          this.display=eval(ult_operando);
-          this.ult_resultado=eval(ult_operando);
-          this.ult_op=ult_operando.split(this.operacion);
-          //console.log(this.ult_op[separacion.length-1]);
+          var res=eval(this.a+this.operacion+this.b);
+          this.display=res;
+          this.ult_b=this.b;
         }
+        this.ult_resultado=res;
+        this.bucle=true;
   	},
   	verificar:function(tecla){
   		if (tecla != "punto" && tecla != "por" && tecla != "dividido" && tecla != "mas" && tecla != "menos" && tecla != "igual") {
@@ -140,10 +140,6 @@ var calculadora={
   	}		
 }
 
-// function calculadora(total, accion) {
-//   this.total = total;
-//   this.accion=accion;
-// }
 
 var tecla=document.getElementsByClassName("tecla");
 //console.log(tecla);
