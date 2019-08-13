@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON</title>
+</head>
+<body>
+
+<button type="button" onclick="mostrar_todos()" id="btn_mostrar_todos">Mostrar Todos</button>
+<button type="button" onclick="promedio()" id="btn_promedio">Promedio</button>
+<button type="button" onclick="mayor_nota()" id="btn_mayor_nota">Mayor Nota</button>
+<button type="button" onclick="menor_nota()" id="btn_menor_nota">Menor Nota</button>
+
+<form onsubmit="cargar_estudiante(event)">
+	<input type="text" name="codigo" id="codigo" placeholder="codigo"><br>
+	<input type="text" name="nombre" id="nombre" placeholder="nombre"><br>
+	<input type="number" name="nota" id="nota" placeholder="nota"><br>
+
+	<input type="submit" name="sub" value="Guardar">
+</form>
+
+<div id="resultado" style="margin-top: 2rem;">
+	
+</div>
+
+<script type="text/javascript">
+	var estudiantes=[
+			{"codigo":"001","nombre":"Pedro","nota":"9"},
+			{"codigo":"002","nombre":"Matias","nota":"6"},
+			{"codigo":"003","nombre":"Nahuel","nota":"5"},
+			{"codigo":"004","nombre":"Gonzalo","nota":"2"},
+			{"codigo":"005","nombre":"Eduardo","nota":"9"},
+			{"codigo":"006","nombre":"Santiago","nota":"10"},
+			{"codigo":"007","nombre":"Lucas","nota":"1"},
+			{"codigo":"008","nombre":"Nicolas","nota":"3"},
+			{"codigo":"009","nombre":"Patricio","nota":"8"},
+			{"codigo":"0010","nombre":"Alejandro","nota":"7"}
+		];
+	var resultado=document.getElementById('resultado');
+
+	function cargar_estudiante(event){
+		event.preventDefault();
+		var nombre=document.getElementById('nombre').value;
+		var codigo=document.getElementById('codigo').value;
+		var nota=document.getElementById('nota').value;
+
+		estudiantes.push({"codigo":codigo,"nombre":nombre,"nota":nota});
+	}
+	
+	function mostrar_todos(){
+		resultado.innerHTML="";
+		for (var i = 0 ; i < estudiantes.length; i++) {
+			resultado.innerHTML+="Codigo: "+estudiantes[i].codigo+ "<br>";
+			resultado.innerHTML+="Nombre: "+estudiantes[i].nombre+ "<br>";
+			resultado.innerHTML+="Nota: "+estudiantes[i].nota+ "<br>";
+			resultado.innerHTML+="----------------------------- <br>";
+		}
+	}
+
+	function promedio(){
+		var notas=0;
+		for (var i = 0 ; i < estudiantes.length; i++) {
+			notas=notas+parseInt(estudiantes[i].nota);
+		}
+		var promedio= notas/10;
+		resultado.innerHTML="La nota promedio es: "+promedio;
+	}
+
+	function mayor_nota(){
+		var nota_mayor=0;
+		var estudiante="";
+		for (var i = 0 ; i < estudiantes.length; i++) {
+			if (nota_mayor < parseInt(estudiantes[i].nota)) {
+				nota_mayor=estudiantes[i].nota;
+				estudiante=estudiantes[i].nombre;
+			}
+		}
+		resultado.innerHTML="La mayor nota es: "+nota_mayor+", de el estudiante: "+estudiante;
+	}
+
+	function menor_nota(){
+		var nota_menor=10;
+		var estudiante="";
+		for (var i = 0 ; i < estudiantes.length; i++) {
+			if (nota_menor > parseInt(estudiantes[i].nota)) {
+				nota_menor=estudiantes[i].nota;
+				estudiante=estudiantes[i].nombre;
+			}
+		}
+		resultado.innerHTML="La menor nota es: "+nota_menor+", de el estudiante: "+estudiante;
+	}
+
+</script>
+</body>
+</html>
