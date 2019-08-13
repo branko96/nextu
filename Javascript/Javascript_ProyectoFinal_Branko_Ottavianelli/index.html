@@ -1,41 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>JSON</title>
+	<title>Evaluacion 2</title>
+	<style type="text/css">
+		table, th, td {
+		  border: 1px solid black;
+		}
+	</style>
 </head>
 <body>
+<h1>Registro de estudiante</h1>
 
-<button type="button" onclick="mostrar_todos()" id="btn_mostrar_todos">Mostrar Todos</button>
-<button type="button" onclick="promedio()" id="btn_promedio">Promedio</button>
-<button type="button" onclick="mayor_nota()" id="btn_mayor_nota">Mayor Nota</button>
-<button type="button" onclick="menor_nota()" id="btn_menor_nota">Menor Nota</button>
+<br>
+<br>
+<form>
+	<label>Codigo:</label><br>
+	<input type="text" name="codigo" id="codigo"><br>
+	<label>Nombre:</label><br>
+	<input type="text" name="nombre" id="nombre"><br>
+	<label>Nota:</label><br>
+	<input type="number" name="nota" id="nota" min="0"><br>
+	<br>
+	
+</form>
+
+<button type="button" id="btn_registrar">Registrar Estudiante</button>
+<button type="button" id="btn_promedio">Promedio</button>
+<button type="button" id="btn_mayor_nota">Mayor Nota</button>
+<button type="button" id="btn_menor_nota">Menor Nota</button>
 
 <div id="resultado" style="margin-top: 2rem;">
 	
 </div>
 
 <script type="text/javascript">
-	var estudiantes=[
-			{"codigo":"001","nombre":"Pedro","nota":"9"},
-			{"codigo":"002","nombre":"Matias","nota":"6"},
-			{"codigo":"003","nombre":"Nahuel","nota":"5"},
-			{"codigo":"004","nombre":"Gonzalo","nota":"2"},
-			{"codigo":"005","nombre":"Eduardo","nota":"9"},
-			{"codigo":"006","nombre":"Santiago","nota":"10"},
-			{"codigo":"007","nombre":"Lucas","nota":"1"},
-			{"codigo":"008","nombre":"Nicolas","nota":"3"},
-			{"codigo":"009","nombre":"Patricio","nota":"8"},
-			{"codigo":"0010","nombre":"Alejandro","nota":"7"}
-		];
+	var estudiantes=[];
 	var resultado=document.getElementById('resultado');
+
+	var btn_registrar = document.getElementById("btn_registrar"); 
+  	btn_registrar.addEventListener("click", cargar_estudiante, false); 
+
+	var promedio_btn = document.getElementById("btn_promedio"); 
+  	promedio_btn.addEventListener("click", promedio, false); 
+
+  	var btn_mayor_nota = document.getElementById("btn_mayor_nota"); 
+  	btn_mayor_nota.addEventListener("click", mayor_nota, false); 
+
+  	var btn_menor_nota = document.getElementById("btn_menor_nota"); 
+  	btn_menor_nota.addEventListener("click", menor_nota, false); 
+
+	function cargar_estudiante(event){
+		event.preventDefault();
+
+		var nombre=document.getElementById('nombre').value;
+		var codigo=document.getElementById('codigo').value;
+		var nota=document.getElementById('nota').value;
+		if (nota != "" && codigo != "" && nombre != "") {
+			estudiantes.push({"codigo":codigo,"nombre":nombre,"nota":nota});
+
+			document.getElementById('nombre').value="";
+			document.getElementById('codigo').value="";
+			document.getElementById('nota').value="";
+			alert("La nota de "+nombre+" ha sido guardada");
+			mostrar_todos();
+		}else{
+			alert("Debe completar todos los campos");
+		}
+	}
+	
 	function mostrar_todos(){
 		resultado.innerHTML="";
+		var tabla="<table ><thead><tr><th>Codigo</th><th>Nombre</th><th>Nota</th></tr></thead><tbody>";
 		for (var i = 0 ; i < estudiantes.length; i++) {
-			resultado.innerHTML+="Codigo: "+estudiantes[i].codigo+ "<br>";
-			resultado.innerHTML+="Nombre: "+estudiantes[i].nombre+ "<br>";
-			resultado.innerHTML+="Nota: "+estudiantes[i].nota+ "<br>";
-			resultado.innerHTML+="----------------------------- <br>";
+			tabla+="<tr>";
+			tabla+="<td>"+estudiantes[i].codigo+ "</td>";
+			tabla+="<td>"+estudiantes[i].nombre+ "</td>";
+			tabla+="<td>"+estudiantes[i].nota+ "</td>";
+			tabla+="</tr>";
 		}
+		tabla+="</tbody></table>";
+		resultado.innerHTML=tabla;
 	}
 
 	function promedio(){
@@ -43,8 +87,9 @@
 		for (var i = 0 ; i < estudiantes.length; i++) {
 			notas=notas+parseInt(estudiantes[i].nota);
 		}
-		var promedio= notas/10;
-		resultado.innerHTML="La nota promedio es: "+promedio;
+		var promedio= notas/estudiantes.length;
+
+		alert("La nota promedio es: "+promedio);
 	}
 
 	function mayor_nota(){
@@ -56,7 +101,7 @@
 				estudiante=estudiantes[i].nombre;
 			}
 		}
-		resultado.innerHTML="La mayor nota es: "+nota_mayor+", de el estudiante: "+estudiante;
+		alert("La mayor nota es: "+nota_mayor+", de el estudiante: "+estudiante);
 	}
 
 	function menor_nota(){
@@ -68,7 +113,7 @@
 				estudiante=estudiantes[i].nombre;
 			}
 		}
-		resultado.innerHTML="La menor nota es: "+nota_menor+", de el estudiante: "+estudiante;
+		alert("La menor nota es: "+nota_menor+", de el estudiante: "+estudiante);
 	}
 
 </script>

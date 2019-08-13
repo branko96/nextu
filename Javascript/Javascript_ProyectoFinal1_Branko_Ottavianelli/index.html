@@ -10,14 +10,6 @@
 <button type="button" onclick="mayor_nota()" id="btn_mayor_nota">Mayor Nota</button>
 <button type="button" onclick="menor_nota()" id="btn_menor_nota">Menor Nota</button>
 
-<form onsubmit="cargar_estudiante(event)">
-	<input type="text" name="codigo" id="codigo" placeholder="codigo"><br>
-	<input type="text" name="nombre" id="nombre" placeholder="nombre"><br>
-	<input type="number" name="nota" id="nota" placeholder="nota"><br>
-
-	<input type="submit" name="sub" value="Guardar">
-</form>
-
 <div id="resultado" style="margin-top: 2rem;">
 	
 </div>
@@ -36,16 +28,6 @@
 			{"codigo":"0010","nombre":"Alejandro","nota":"7"}
 		];
 	var resultado=document.getElementById('resultado');
-
-	function cargar_estudiante(event){
-		event.preventDefault();
-		var nombre=document.getElementById('nombre').value;
-		var codigo=document.getElementById('codigo').value;
-		var nota=document.getElementById('nota').value;
-
-		estudiantes.push({"codigo":codigo,"nombre":nombre,"nota":nota});
-	}
-	
 	function mostrar_todos(){
 		resultado.innerHTML="";
 		for (var i = 0 ; i < estudiantes.length; i++) {
