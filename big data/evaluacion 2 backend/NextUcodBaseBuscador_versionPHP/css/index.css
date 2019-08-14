@@ -143,3 +143,30 @@ video#vidFondo {
 .card-action{
   text-align: right;
 }
+
+.contenedor_imagen{
+  width: 40%;
+}
+.contenedor_datos{
+  width: 60%;
+  padding: 20px;
+}
+.img-sale{
+  width: 100%;
+  display: block;
+}
+.card.item{
+  display: flex;
+}
+#cargando img{
+  margin-left: 40%;
+ }
+
+#container {
+  background:#fff;
+  width:900px;
+  margin: auto;
+}
+#top {
+  /*  height: 21px; */
+}

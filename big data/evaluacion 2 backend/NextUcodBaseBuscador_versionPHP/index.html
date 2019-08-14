@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <video src="img/video.mp4" id="vidFondo"></video>
+  <video src="video/video.mp4" muted="muted" id="vidFondo"></video>
 
   <div class="contenedor">
     <div class="card rowTitulo">
@@ -29,12 +29,22 @@
             <label for="selectCiudad">Ciudad:</label>
             <select name="ciudad" id="selectCiudad">
               <option value="" selected>Elige una ciudad</option>
+              <option value="New York">New York</option>
+              <option value="Orlando">Orlando</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Houston">Houston</option>
+              <option value="Washington">Washington</option>
+              <option value="Miami">Miami</option>
+
             </select>
           </div>
           <div class="filtroTipo input-field">
-            <label for="selecTipo">Tipo:</label><br>
+            <label for="selectTipo">Tipo:</label><br>
             <select name="tipo" id="selectTipo">
               <option value="" selected>Elige un tipo</option>
+              <option value="Casa">Casa</option>
+              <option value="Casa de Campo">Casa de Campo</option>
+              <option value="Apartamento">Apartamento</option>
             </select>
           </div>
           <div class="filtroPrecio">
@@ -53,11 +63,16 @@
         <h5>Resultados de la búsqueda:</h5>
         <div class="divider"></div>
         <button type="button" name="todos" class="btn-flat waves-effect" id="mostrarTodos">Mostrar Todos</button>
-        ACA SE MUESTRAN LOS RESULTADOS
-        <div id="results"></div>
+        
       </div>
+      <!--ACA SE MUESTRAN LOS RESULTADOS-->
+      <div id="cargando" style="display: none;">
+        <center>
+          <img src="img/cargando.gif" alt="">
+        </center>
 
-    </div>
+      </div>
+      <div id="results"></div>
   </div>
 
   <script type="text/javascript" src="js/jquery-3.0.0.js"></script>

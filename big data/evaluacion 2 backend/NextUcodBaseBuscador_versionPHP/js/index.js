@@ -51,9 +51,43 @@ function playVideoOnScroll(){
 inicializarSlider();
 playVideoOnScroll();
 
-
 $(function(){
+
+    $('select').material_select();
+
+
+    /*$("#selectCiudad").change(function(){
+        cargar(0);
+    });
+    $("#selectTipo").change(function(){
+        cargar(0);
+    });
+    $("#rangoPrecio").change(function(){
+        cargar(0);
+    });*/
+    $("#formulario").submit(function(e){
+        e.preventDefault();
+        cargar(0);
+    });
    $("#mostrarTodos").click(function(){
-        $.ajax({url})
+       cargar(1);
    });
 });
+function cargar(tipo){
+    $("#results").html("");
+    $("#cargando").show("fast");
+    setTimeout(function(){
+        $("#cargando").hide("fast");
+        actualizar(tipo);
+    },1400);
+
+}
+function actualizar(todos){
+    $.ajax({
+        method: "POST",
+        url: "buscador.php",
+        data: { todos: todos, tipo: $("#selectTipo").val(), ciudad: $("#selectCiudad").val(),precio:$("#rangoPrecio").val()}
+    }).done(function( msg ) {
+        $("#results").html(msg);
+    });
+}
