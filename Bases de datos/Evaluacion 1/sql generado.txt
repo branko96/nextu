@@ -1,0 +1,124 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema turismo
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema turismo
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `turismo` ;
+USE `turismo` ;
+
+-- -----------------------------------------------------
+-- Table `turismo`.`turistas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `turismo`.`turistas` (
+  `idturistas` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `edad` INT(10) NULL,
+  `genero` VARCHAR(10) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  PRIMARY KEY (`idturistas`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `turismo`.`destinos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `turismo`.`destinos` (
+  `iddestinos` INT NOT NULL AUTO_INCREMENT,
+  `ciudad_destino` VARCHAR(45) NULL,
+  `imagen_destino` VARCHAR(45) NULL,
+  `popularidad` INT(10) NULL,
+  PRIMARY KEY (`iddestinos`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `turismo`.`hoteles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `turismo`.`hoteles` (
+  `idhoteles` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL,
+  `imagen` VARCHAR(45) NULL,
+  `direccion` VARCHAR(45) NULL,
+  `destinos_iddestinos` INT NOT NULL,
+  PRIMARY KEY (`idhoteles`),
+  INDEX `fk_hoteles_destinos1_idx` (`destinos_iddestinos` ASC) VISIBLE,
+  CONSTRAINT `fk_hoteles_destinos1`
+    FOREIGN KEY (`destinos_iddestinos`)
+    REFERENCES `turismo`.`destinos` (`iddestinos`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `turismo`.`promociones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `turismo`.`promociones` (
+  `idpromociones` INT NOT NULL AUTO_INCREMENT,
+  `nombre_promo` VARCHAR(45) NULL,
+  `precio` DOUBLE NULL,
+  `fecha_inicio` DATE NULL,
+  `fecha_fin` DATE NULL,
+  `hoteles_idhoteles` INT NOT NULL,
+  PRIMARY KEY (`idpromociones`),
+  INDEX `fk_promociones_hoteles1_idx` (`hoteles_idhoteles` ASC) VISIBLE,
+  CONSTRAINT `fk_promociones_hoteles1`
+    FOREIGN KEY (`hoteles_idhoteles`)
+    REFERENCES `turismo`.`hoteles` (`idhoteles`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `turismo`.`agentes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `turismo`.`agentes` (
+  `idagentes` INT NOT NULL AUTO_INCREMENT,
+  `nombre_agente` VARCHAR(45) NULL,
+  PRIMARY KEY (`idagentes`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `turismo`.`venta_promocion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `turismo`.`venta_promocion` (
+  `turistas_idturistas` INT NOT NULL,
+  `promociones_idpromociones` INT NOT NULL,
+  `fecha_venta` DATE NULL,
+  `agentes_idagentes` INT NOT NULL,
+  PRIMARY KEY (`turistas_idturistas`, `promociones_idpromociones`),
+  INDEX `fk_turistas_has_promociones_promociones1_idx` (`promociones_idpromociones` ASC) VISIBLE,
+  INDEX `fk_turistas_has_promociones_turistas1_idx` (`turistas_idturistas` ASC) VISIBLE,
+  INDEX `fk_venta_promocion_agentes1_idx` (`agentes_idagentes` ASC) VISIBLE,
+  CONSTRAINT `fk_turistas_has_promociones_turistas1`
+    FOREIGN KEY (`turistas_idturistas`)
+    REFERENCES `turismo`.`turistas` (`idturistas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_turistas_has_promociones_promociones1`
+    FOREIGN KEY (`promociones_idpromociones`)
+    REFERENCES `turismo`.`promociones` (`idpromociones`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_venta_promocion_agentes1`
+    FOREIGN KEY (`agentes_idagentes`)
+    REFERENCES `turismo`.`agentes` (`idagentes`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
